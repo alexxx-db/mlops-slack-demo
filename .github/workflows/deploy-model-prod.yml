@@ -18,7 +18,7 @@ on:
 
 env:
   DATABRICKS_HOST: https://adb-984752964297111.11.azuredatabricks.net
-  NODE_TYPE_ID: Standard_D3_v2
+  NODE_TYPE_ID: Standard_L16s
   
 jobs:
   prod:
