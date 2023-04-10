@@ -50,7 +50,7 @@ To use the scripts, you must:
        on the subscription containing the workspaces. After confirming that the staging and prod workspaces are in the current directory, proceed to the next steps.
     4. The [Azure Databricks resource page](https://portal.azure.com/#view/HubsExtension/BrowseResource/resourceType/Microsoft.Databricks%2Fworkspaces)
        contains links to the subscription containing your staging and prod workspaces. Click into the subscription, copy its ID ("Subscription ID"), and
-       store it as an environment variable by running `export AZURE_SUBSCRIPTION_ID=<subscription-id>`
+       store it as an environment variable by running `export AZURE_SUBSCRIPTION_ID=6369c148-f8a9-4fb5-8a9d-ac1b2c8e756e`
     5. Verify that you have "Contributor" access by clicking into
        "Access Control (IAM)" > "View my access" within the subscription UI,
        as described in [this doc page](https://learn.microsoft.com/en-us/azure/role-based-access-control/check-access#step-1-open-the-azure-resources).
@@ -59,7 +59,7 @@ To use the scripts, you must:
     6. Find the current tenant ID
        by navigating to [this page](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/Properties),
        also accessible by navigating to the [Azure Active Directory UI](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/Overview)
-       and clicking Properties. Save the tenant ID as an environment variable by running `export AZURE_TENANT_ID=<id>`
+       and clicking Properties. Save the tenant ID as an environment variable by running `export AZURE_TENANT_ID=9f37a392-f0ae-4280-9796-f1864a10effc`
     7. Verify that you can create and manage service principals in the AAD tenant, by opening the
        [App registrations UI](https://portal.azure.com/#view/Microsoft_AAD_IAM/ActiveDirectoryMenuBlade/~/RegisteredApps)
        under the Azure Active Directory resource within the Azure portal. Then, verify that you can click "New registration" to create
@@ -109,8 +109,8 @@ Then, run the following command, providing the required vars to bootstrap CI/CD.
 ```
 python .mlops-setup-scripts/cicd/bootstrap.py \
   --var azure_tenant_id="$AZURE_TENANT_ID" \
-  --var github_repo_url=https://github.com/<your-org>/<your-repo-name> \
-  --var git_token=<your-git-token>
+  --var github_repo_url=https://github.com/alexxx-db/mlops-stacks-demo\
+  --var git_token=dapi10ad1480af3db7016108bc766ab0bc1f-2
 ```
 
 Take care to run the Terraform bootstrap script before the CI/CD bootstrap script. 
@@ -145,6 +145,14 @@ where the JSON key
 (e.g. `prodAzureSpApplicationId`)
 is the expected name of the secret in GitHub Actions and the JSON value
 (without the surrounding `"` double-quotes) is the value of the secret. 
+
+In this demo:
+  "prodAzureSpApplicationId": "7ed7f83c-181e-41fa-ba60-1bc77f4bcf73"
+  "prodAzureSpClientSecret": "p2I8Q~Jtz8vXynTRnJqAtIh~.NJDMaj16NmKJbms"
+  "prodAzureSpTenantId": "9f37a392-f0ae-4280-9796-f1864a10effc"
+  "stagingAzureSpApplicationId": "0e857eec-c44b-4a48-b238-554a19abf8d2"
+  "stagingAzureSpClientSecret": "9H48Q~VreSPOf4KOS4hw2-IaajQwj4FRneZoMau."
+  "stagingAzureSpTenantId": "9f37a392-f0ae-4280-9796-f1864a10effc"
 
 Note: The provided GitHub Actions workflows under `.github/workflows` assume that you will configure
 [repo secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository),
