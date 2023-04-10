@@ -18,7 +18,7 @@ on:
 
 env:
   DATABRICKS_HOST: https://adb-7851734333608688.8.azuredatabricks.net
-  NODE_TYPE_ID: Standard_D3_v2
+  NODE_TYPE_ID: Standard_L8s
   
 jobs:
   staging:
